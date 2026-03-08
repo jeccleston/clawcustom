@@ -1,0 +1,9 @@
+services:
+  api:
+    image: python:3.11
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    command: sleep infinity

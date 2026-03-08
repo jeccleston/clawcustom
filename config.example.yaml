@@ -1,0 +1,23 @@
+# nanobot Configuration
+# Copy this to ~/.nanobot/config.yaml or set as environment variables
+
+agents:
+  defaults:
+    workspace: "~/.nanobot/workspace"
+    model: "qwen-max"  # DashScope model: qwen-max, qwen-plus, qwen-turbo
+    provider: "dashscope"  # Use DashScope provider
+    max_tokens: 8192
+    temperature: 0.1
+    max_tool_iterations: 40
+
+providers:
+  dashscope:
+    api_key: "YOUR_DASHSCOPE_API_KEY"  # Replace with your actual API key
+    api_base: "https://coding-intl.dashscope.aliyuncs.com/v1"  # Custom endpoint
+
+tools:
+  web:
+    proxy: null  # Optional: "http://127.0.0.1:7890"
+  exec:
+    timeout: 60
+  restrict_to_workspace: false

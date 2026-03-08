@@ -1,0 +1,161 @@
+{
+  "name": "nanobot",
+  "description": "Ultra-lightweight personal AI assistant - 4000 lines of code, 99% smaller than alternatives",
+  "version": "0.1.4",
+  "repository": {
+    "url": "https://github.com/HKUDS/nanobot",
+    "branch": "main"
+  },
+  "build": {
+    "type": "dockerfile",
+    "path": "Dockerfile",
+    "cacheFrom": "ghcr.io/astral-sh/uv:python3.12-bookworm-slim"
+  },
+  "runtime": {
+    "type": "docker-compose",
+    "file": "docker-compose.coolify.yml",
+    "volumes": [
+      {
+        "name": "nanobot-data",
+        "mountPath": "/root/.nanobot",
+        "persistent": true
+      }
+    ],
+    "ports": [
+      {
+        "internal": 18790,
+        "protocol": "http",
+        "visible": true
+      }
+    ],
+    "environment": {
+      "required": [
+        {
+          "name": "OPENROUTER_API_KEY",
+          "description": "OpenRouter API key (or use ANTHROPIC_API_KEY)",
+          "default": "",
+          "secret": true
+        }
+      ],
+      "optional": [
+        {
+          "name": "ANTHROPIC_API_KEY",
+          "description": "Anthropic API key for Claude models",
+          "default": "",
+          "secret": true
+        },
+        {
+          "name": "DASHSCOPE_API_KEY",
+          "description": "Alibaba DashScope API key for Qwen models",
+          "default": "",
+          "secret": true
+        },
+        {
+          "name": "AI_MODEL",
+          "description": "LLM model to use",
+          "default": "anthropic/claude-opus-4-5"
+        },
+        {
+          "name": "AI_PROVIDER",
+          "description": "Provider preference (auto, openrouter, anthropic, dashscope)",
+          "default": "auto"
+        },
+        {
+          "name": "AI_TEMPERATURE",
+          "description": "Model temperature (0.0-1.0)",
+          "default": "0.1"
+        },
+        {
+          "name": "BRAVE_SEARCH_API_KEY",
+          "description": "Brave Search API key for web search",
+          "default": "",
+          "secret": true
+        },
+        {
+          "name": "TELEGRAM_ENABLED",
+          "description": "Enable Telegram channel",
+          "default": "false"
+        },
+        {
+          "name": "TELEGRAM_BOT_TOKEN",
+          "description": "Telegram bot token",
+          "default": "",
+          "secret": true
+        },
+        {
+          "name": "DISCORD_ENABLED",
+          "description": "Enable Discord channel",
+          "default": "false"
+        },
+        {
+          "name": "DISCORD_BOT_TOKEN",
+          "description": "Discord bot token",
+          "default": "",
+          "secret": true
+        },
+        {
+          "name": "CPU_LIMIT",
+          "description": "CPU limit",
+          "default": "1"
+        },
+        {
+          "name": "MEMORY_LIMIT",
+          "description": "Memory limit",
+          "default": "1G"
+        },
+        {
+          "name": "RESTRICT_TO_WORKSPACE",
+          "description": "Restrict file access to workspace only",
+          "default": "true"
+        }
+      ]
+    },
+    "resources": {
+      "cpu": {
+        "limit": "1",
+        "reservation": "0.25"
+      },
+      "memory": {
+        "limit": "1G",
+        "reservation": "256M"
+      }
+    },
+    "healthCheck": {
+      "command": "nanobot status",
+      "interval": 60,
+      "timeout": 10,
+      "retries": 3,
+      "startPeriod": 30
+    },
+    "restartPolicy": "unless-stopped"
+  },
+  "features": [
+    "Ultra-lightweight: ~4000 lines of code",
+    "Multi-platform chat: Telegram, Discord, WhatsApp, WeChat, Slack, Email",
+    "Multiple LLM providers: OpenRouter, Anthropic, DashScope, DeepSeek, Groq",
+    "Built-in tools: Web search, code execution, file operations",
+    "MCP support: Model Context Protocol integration",
+    "Persistent memory: Long-term conversation memory",
+    "Scheduled tasks: Cron-based automation",
+    "Skills system: Extensible via SKILL.md files"
+  ],
+  "postDeploy": {
+    "instructions": [
+      "1. Check the Logs tab for startup messages",
+      "2. Configure your LLM API key in environment variables",
+      "3. Test via CLI: docker exec -it <container> nanobot agent -m 'Hello!'",
+      "4. Optional: Enable chat channels (Telegram, Discord, WhatsApp)",
+      "5. For WhatsApp: Run 'nanobot channels login' and scan QR code"
+    ]
+  },
+  "documentation": {
+    "readme": "README.md",
+    "coolifyGuide": "COOLIFY_DEPLOY.md"
+  },
+  "author": {
+    "name": "nanobot team",
+    "url": "https://github.com/HKUDS/nanobot"
+  },
+  "license": "MIT",
+  "tags": ["ai", "chatbot", "assistant", "llm", "agent", "telegram", "discord"]
+}
