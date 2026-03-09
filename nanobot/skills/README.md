@@ -27,3 +27,4 @@ The skill format and metadata structure follow OpenClaw's conventions to maintai
 | `pdf` | Read, extract, and manipulate PDF files |
 | `fullstack-coding` | Docker-based development sandboxes for fullstack coding |
 | `stock-insight` | Research and analyze stocks, ETFs, and market data |
+| `worker` | Spawn specialized worker agents (coder, researcher, writer, analyst, reviewer, architect, devops) |

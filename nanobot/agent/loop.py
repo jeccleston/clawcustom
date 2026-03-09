@@ -21,8 +21,10 @@ from nanobot.agent.tools.message import MessageTool
 from nanobot.agent.tools.registry import ToolRegistry
 from nanobot.agent.tools.shell import ExecTool
 from nanobot.agent.tools.spawn import SpawnTool
+from nanobot.agent.tools.spawn_worker import SpawnWorkerTool
 from nanobot.agent.tools.stock import StockAnalysisTool, MarketOverviewTool, CompareStocksTool
 from nanobot.agent.tools.web import WebFetchTool, WebSearchTool
+from nanobot.agent.worker import WorkerAgentManager
 from nanobot.bus.events import InboundMessage, OutboundMessage
 from nanobot.bus.queue import MessageBus
 from nanobot.providers.base import LLMProvider
@@ -101,6 +103,14 @@ class AgentLoop:
             exec_config=self.exec_config,
             restrict_to_workspace=restrict_to_workspace,
         )
+        self.workers = WorkerAgentManager(
+            provider=provider,
+            workspace=workspace,
+            bus=bus,
+            model=self.model,
+            exec_config=self.exec_config,
+            restrict_to_workspace=restrict_to_workspace,
+        )
 
         self._running = False
         self._mcp_servers = mcp_servers or {}
@@ -133,6 +143,7 @@ class AgentLoop:
         self.tools.register(WebFetchTool(proxy=self.web_proxy))
         self.tools.register(MessageTool(send_callback=self.bus.publish_outbound))
         self.tools.register(SpawnTool(manager=self.subagents))
+        self.tools.register(SpawnWorkerTool(manager=self.workers))
 
         # Stock analysis tools (optional - requires yfinance)
         try:
