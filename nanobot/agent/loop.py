@@ -27,6 +27,8 @@ from nanobot.agent.tools.web import WebFetchTool, WebSearchTool
 from nanobot.agent.worker import WorkerAgentManager
 from nanobot.bus.events import InboundMessage, OutboundMessage
 from nanobot.bus.queue import MessageBus
+from nanobot.plugins.loader import PluginLoader
+from nanobot.plugins.registry import PluginRegistry
 from nanobot.providers.base import LLMProvider
 from nanobot.session.manager import Session, SessionManager
 
@@ -112,6 +114,10 @@ class AgentLoop:
             restrict_to_workspace=restrict_to_workspace,
         )
 
+        # Plugin system
+        self.plugin_registry = PluginRegistry()
+        self.plugin_loader = PluginLoader(self.plugin_registry)
+
         self._running = False
         self._mcp_servers = mcp_servers or {}
         self._mcp_stack: AsyncExitStack | None = None
@@ -156,6 +162,23 @@ class AgentLoop:
 
         if self.cron_service:
             self.tools.register(CronTool(self.cron_service))
+
+    async def _load_plugins(self) -> None:
+        """Load and enable plugins."""
+        try:
+            # Get enabled plugins from config (TODO: read from actual config)
+            enabled_plugins = ["workers", "docker"]
+
+            # Load all plugins
+            await self.plugin_loader.load_all(enabled_plugins)
+
+            # Register plugin tools
+            for tool in self.plugin_registry.get_all_tools():
+                self.tools.register(tool)
+
+            logger.info("Loaded {} plugins", len(self.plugin_registry))
+        except Exception as e:
+            logger.error("Failed to load plugins: {}", e)
 
     async def _connect_mcp(self) -> None:
         """Connect to configured MCP servers (one-time, lazy)."""
@@ -293,8 +316,14 @@ class AgentLoop:
     async def run(self) -> None:
         """Run the agent loop, dispatching messages as tasks to stay responsive to /stop."""
         self._running = True
+
+        # Load plugins
+        await self._load_plugins()
+
+        # Connect MCP servers
         await self._connect_mcp()
-        logger.info("Agent loop started")
+
+        logger.info("Agent loop started with {} plugins loaded", len(self.plugin_registry))
 
         while self._running:
             try:
