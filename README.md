@@ -1,169 +1,135 @@
-# ClawCustom: Enterprise AI Assistant Platform
+# ClawCustom v2.0 - Modular AI Assistant Platform
 
-**ClawCustom** is a powerful, customizable AI assistant platform built on nanobot with enterprise-grade features including specialized worker agents, stock analysis, document processing, and Docker sandbox environments.
+**ClawCustom** is a next-generation, modular AI assistant platform with specialized worker agents, Docker development environments, and enterprise-grade features.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue)](https://github.com/jeccleston/clawcustom)
 ![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Discord](https://img.shields.io/badge/Discord-Community-5865F2?style=flat&logo=discord&logoColor=white)](https://discord.gg/MnCvHqpUGB)
 
 ---
 
-## ✨ Features
+## 🎉 What's New in v2.0
+
+✨ **Complete Platform Rewrite** with:
+
+- 🧩 **Plugin System** - Modular architecture, easy to extend
+- 🤖 **Worker Agents 2.0** - 7 specialized AI workers (YAML-based)
+- 🐳 **Docker Environments** - Full-stack dev sandboxes
+- 👤 **Interactive Onboarding** - Guided setup wizard
+- 📚 **Context-Aware Help** - Built-in assistance
+
+---
+
+## ✨ Core Features
 
 ### 🤖 Specialized Worker Agents
 
-Spawn expert AI agents for specific task domains:
+Spawn expert AI agents for specific tasks:
 
-| Worker | Specialty | Use Case |
-|--------|-----------|----------|
-| **Coder** | Software development | Build features, fix bugs, write tests |
-| **Researcher** | Information gathering | Market research, competitive analysis |
-| **Writer** | Content creation | Documentation, articles, emails |
-| **Analyst** | Data analysis | Financial analysis, metrics, insights |
-| **Reviewer** | Code review | QA, security audit, best practices |
-| **Architect** | System design | Architecture, APIs, databases |
-| **DevOps** | Infrastructure | Docker, CI/CD, deployment |
+| Worker | Specialty | Command |
+|--------|-----------|---------|
+| 🤖 **Coder** | Software development | `use coder to build API` |
+| 📚 **Researcher** | Information gathering | `use researcher to analyze market` |
+| ✍️ **Writer** | Content creation | `use writer for documentation` |
+| 📊 **Analyst** | Data analysis | `use analyst for portfolio review` |
+| 🔍 **Reviewer** | Code review | `use reviewer for security audit` |
+| 🏗️ **Architect** | System design | `use architect to design system` |
+| 🛠️ **DevOps** | Infrastructure | `use devops for CI/CD pipeline` |
 
 **Example:**
 ```bash
-nanobot agent -m "Spawn a coder worker to build a REST API for user management"
+clawcustom agent -m "use coder to build a REST API with FastAPI"
+```
+
+### 🐳 Docker Development Environments
+
+Instant full-stack development sandboxes:
+
+**8 Pre-built Templates:**
+- `python` - Python 3.11
+- `nodejs` - Node.js 20
+- `python-postgres` - Python + PostgreSQL
+- `fullstack-react` - React + Node + PostgreSQL
+- `fastapi` - FastAPI + PostgreSQL + Redis
+- `nodejs-mongo` - Node.js + MongoDB
+- `nextjs` - Next.js + PostgreSQL
+- `ml-gpu` - TensorFlow + Jupyter + GPU
+
+**Agent-Managed Workflow:**
+```
+User: "Build a REST API for user management"
+Agent:
+  1. Creates python-postgres environment
+  2. Installs dependencies
+  3. Implements API
+  4. Writes tests
+  5. Documents
+  6. Shows result: http://localhost:8000
 ```
 
 ### 📈 Stock Market Analysis
 
-Real-time stock market data and analysis tools:
+Real-time market data and portfolio tracking:
 
-- **Stock Analysis** - Price, financials, earnings, news for any ticker
-- **Market Overview** - Major indices (S&P 500, Dow, NASDAQ)
-- **Compare Stocks** - Compare multiple stocks by performance
-- **Portfolio Tracking** - Analyze holdings and performance
-
-**Example:**
-```python
-stock_analysis(symbol="AAPL", data_type="all")
-market_overview(indices=True, movers=True)
-compare_stocks(symbols="AAPL,GOOGL,MSFT", period="1mo")
+```bash
+clawcustom agent -m "What's AAPL's current price and P/E ratio?"
+clawcustom agent -m "Compare NVDA, AMD, INTC performance"
+clawcustom agent -m "Analyze my portfolio: 50 AAPL, 20 GOOGL"
 ```
 
 ### 📄 Document Processing
 
-Work with Word and PDF documents:
+Work with Word and PDF files:
 
-- **DOCX Skill** - Create, read, edit Microsoft Word documents
-- **PDF Skill** - Extract text, merge/split PDFs, get metadata
-- **Tables & Images** - Handle complex document elements
-
-**Example:**
-```python
-# Extract text from PDF
-from pypdf import PdfReader
-reader = PdfReader("document.pdf")
-text = reader.pages[0].extract_text()
-
-# Create Word document
-from docx import Document
-doc = Document()
-doc.add_paragraph("Hello World")
-doc.save("output.docx")
-```
-
-### 🛠️ Full-Stack Development Sandboxes
-
-Docker-based isolated development environments:
-
-- **Pre-built Templates** - Node.js, Python, Fullstack, Databases
-- **One-Click Setup** - Spin up dev environments in seconds
-- **Database Support** - PostgreSQL, MySQL, MongoDB, Redis
-- **Auto Cleanup** - Destroy environments when done
-
-**Available Templates:**
-- `nodejs.yml` - Node.js 20 container
-- `python.yml` - Python 3.11 container
-- `fullstack.yml` - React + Node.js + PostgreSQL
-- `nodejs-mysql.yml` - Node.js + MySQL
-- `nodejs-mongo.yml` - Node.js + MongoDB
-- `python-postgres.yml` - Python + PostgreSQL
-- `redis.yml` - Redis cache
-
-**Example:**
-```bash
-# Create development environment
-cp templates/nodejs.yml docker-compose.yml
-docker-compose up -d
-docker-compose exec app npm install
-```
+- **DOCX** - Create, read, edit Word documents
+- **PDF** - Extract text, merge/split, get metadata
+- **Tables & Images** - Handle complex elements
 
 ### 💬 Multi-Platform Chat
 
-Connect to your favorite chat platforms:
+Connect to your favorite platforms:
 
-- **Telegram** - Bot integration with full feature support
-- **Discord** - Server and DM support
-- **WhatsApp** - QR code login, full messaging
-- **Slack** - Socket mode, threads, reactions
-- **Email** - IMAP/SMTP integration
+- **Telegram** - Full-featured bot
+- **Discord** - Server & DM support
+- **WhatsApp** - QR code login
+- **Slack** - Socket mode
+- **Email** - IMAP/SMTP
 - **Matrix** - E2EE support
-- **Feishu/Lark** - WebSocket long connection
+- **Feishu/Lark** - WebSocket
 - **DingTalk** - Stream mode
 - **QQ** - Bot integration
 
 ### 🔌 LLM Provider Support
 
-Wide range of LLM providers:
+15+ providers supported:
 
-| Provider | Models | Region |
-|----------|--------|--------|
-| **OpenRouter** | All major models | Global |
-| **Anthropic** | Claude series | Global |
-| **DashScope** | Qwen series | China/Global |
-| **DeepSeek** | DeepSeek series | Global |
-| **Groq** | Fast inference | Global |
-| **vLLM** | Self-hosted | Local |
-| **Azure OpenAI** | GPT series | Global |
-
-### 🔧 MCP Support
-
-Model Context Protocol integration for extended capabilities:
-
-- **Filesystem MCP** - Enhanced file operations
-- **Custom MCP Servers** - Connect any MCP-compatible server
-- **HTTP & Stdio** - Multiple transport modes
-
-### ⏰ Scheduled Tasks
-
-Cron-based task automation:
-
-```bash
-# Schedule recurring tasks
-nanobot agent -m "Every morning at 9am, check weather and stock market summary"
-```
-
-### 💓 Heartbeat System
-
-Proactive periodic tasks:
-
-- Runs every 30 minutes
-- Checks `HEARTBEAT.md` for tasks
-- Delivers results to active chat channel
+| Provider | Models | Get API Key |
+|----------|--------|-------------|
+| OpenRouter | All models | [openrouter.ai](https://openrouter.ai) |
+| Anthropic | Claude | [console.anthropic.com](https://console.anthropic.com) |
+| DashScope | Qwen | [dashscope.console.aliyun.com](https://dashscope.console.aliyun.com) |
+| DeepSeek | DeepSeek | [platform.deepseek.com](https://platform.deepseek.com) |
+| Groq | Fast inference | [console.groq.com](https://console.groq.com) |
+| vLLM | Self-hosted | Local deployment |
 
 ---
 
 ## 🚀 Quick Start
 
-### 1-Click Deploy on Coolify (Recommended)
+### 1-Click Deploy on Coolify
 
-The fastest way to get started:
+**Fastest way to get started (5 minutes):**
 
 **1. In Coolify Dashboard:**
 ```
 New Project → New Service → Docker Compose
+Paste: docker-compose.coolify.yml
 ```
 
-**2. Use docker-compose.coolify.yml**
-
-**3. Set Environment Variables:**
+**2. Set Environment Variables:**
 ```bash
-# Required (choose one provider):
+# Required (choose one):
 OPENROUTER_API_KEY=sk-or-v1-xxx
 # OR
 ANTHROPIC_API_KEY=sk-ant-xxx
@@ -172,87 +138,164 @@ ANTHROPIC_API_KEY=sk-ant-xxx
 AI_MODEL=anthropic/claude-opus-4-5
 ```
 
-**4. Deploy** - Wait 2-3 minutes
+**3. Deploy** - Wait 2-3 minutes
 
-**5. Test:**
+**4. Test:**
 ```bash
-docker exec -it <container> nanobot agent -m "Hello!"
+docker exec -it <container> clawcustom agent -m "help"
 ```
 
-📖 **Full Coolify Guide**: See [COOLIFY_DEPLOY.md](COOLIFY_DEPLOY.md)
+📖 **Full Guide**: [COOLIFY_DEPLOY.md](COOLIFY_DEPLOY.md)
 
 ---
 
 ## 📦 Installation
 
-### Option 1: Docker (Recommended)
+### Option 1: From Source (Recommended)
 
 ```bash
 # Clone repository
 git clone https://github.com/jeccleston/clawcustom.git
 cd clawcustom
 
+# Install
+pip install -e .
+
+# Interactive onboarding (new!)
+clawcustom onboard
+
+# Start chatting
+clawcustom agent
+```
+
+### Option 2: Docker
+
+```bash
 # Build image
 docker build -t clawcustom .
 
-# Initialize config
-docker run -v ~/.clawcustom:/root/.nanobot --rm clawcustom onboard
-
-# Edit config
-vim ~/.clawcustom/config.json
+# Initialize (interactive onboarding)
+docker run -v ~/.clawcustom:/root/.clawcustom --rm clawcustom onboard
 
 # Run gateway
-docker run -v ~/.clawcustom:/root/.nanobot -p 18790:18790 clawcustom gateway
+docker run -v ~/.clawcustom:/root/.clawcustom -p 18790:18790 clawcustom gateway
 ```
 
-### Option 2: Docker Compose
+### Option 3: Docker Compose
 
 ```bash
-# Start with docker-compose
-docker compose run --rm nanobot-cli onboard
-vim ~/.nanobot/config.json
-docker compose up -d nanobot-gateway
+# Start services
+docker compose run --rm clawcustom-cli onboard
+docker compose up -d clawcustom-gateway
 
 # View logs
-docker compose logs -f nanobot-gateway
+docker compose logs -f clawcustom-gateway
 ```
 
-### Option 3: From Source (Development)
+### Option 4: PyPI (Coming Soon)
 
 ```bash
-# Clone and install
-git clone https://github.com/jeccleston/clawcustom.git
-cd clawcustom
-pip install -e .
-
-# Install optional dependencies
-pip install nanobot-ai[matrix]  # For Matrix support
-pip install yfinance pandas     # For stock analysis
-
-# Initialize
-nanobot onboard
-
-# Configure
-vim ~/.nanobot/config.json
-
-# Run
-nanobot gateway
+pip install clawcustom
+clawcustom onboard
 ```
 
-### Option 4: From PyPI
+---
+
+## 💡 Usage Examples
+
+### Worker Agents
 
 ```bash
-pip install nanobot-ai
-nanobot onboard
-vim ~/.nanobot/config.json
-nanobot agent
+# Coder - Build features
+clawcustom agent -m "use coder to create a Python module for CSV parsing"
+
+# Researcher - Market research
+clawcustom agent -m "use researcher to analyze the AI assistant market"
+
+# Writer - Documentation
+clawcustom agent -m "use writer to create API documentation"
+
+# Analyst - Data analysis
+clawcustom agent -m "use analyst to review Q4 sales data"
+
+# Reviewer - Code review
+clawcustom agent -m "use reviewer to audit authentication module"
+
+# Architect - System design
+clawcustom agent -m "use architect to design microservices architecture"
+
+# DevOps - Infrastructure
+clawcustom agent -m "use devops to create CI/CD pipeline"
+```
+
+### Docker Environments
+
+```bash
+# Create environment
+clawcustom agent -m "create python environment"
+clawcustom agent -m "create fullstack environment named my-app"
+
+# List environments
+clawcustom agent -m "list environments"
+
+# Execute commands
+clawcustom agent -m "exec in my-app 'npm install'"
+clawcustom agent -m "exec in my-app 'python main.py'"
+
+# Manage
+clawcustom agent -m "stop environment my-app"
+clawcustom agent -m "destroy environment my-app"
+```
+
+### Multi-Worker Workflow
+
+```bash
+clawcustom agent -m "
+Build a complete e-commerce platform:
+1. Research market requirements
+2. Design system architecture
+3. Set up Docker environment
+4. Implement core features
+5. Review code quality
+6. Write documentation
+"
+```
+
+### Stock Analysis
+
+```bash
+# Get stock info
+clawcustom agent -m "price of AAPL"
+clawcustom agent -m "AAPL financial metrics"
+
+# Compare stocks
+clawcustom agent -m "compare AAPL, GOOGL, MSFT"
+
+# Market overview
+clawcustom agent -m "market overview today"
+
+# Portfolio
+clawcustom agent -m "analyze portfolio: 50 AAPL, 20 GOOGL, 30 MSFT"
+```
+
+### Get Help
+
+```bash
+# General help
+clawcustom agent -m "help"
+
+# Topic-specific help
+clawcustom agent -m "help workers"
+clawcustom agent -m "help environments"
+clawcustom agent -m "help commands"
+clawcustom agent -m "help troubleshooting"
 ```
 
 ---
 
 ## ⚙️ Configuration
 
-### Basic Config (`~/.nanobot/config.json`)
+### Basic Config (`~/.clawcustom/config.json`)
 
 ```json
 {
@@ -269,144 +312,32 @@ nanobot agent
       "max_tokens": 8192
     }
   },
+  "plugins": {
+    "enabled": ["workers", "docker", "stock"]
+  },
   "tools": {
     "restrictToWorkspace": true
   }
 }
 ```
 
-### Environment Variables (Coolify/Docker)
+### Environment Variables
 
 ```bash
-# LLM Provider
-OPENROUTER_API_KEY=sk-or-v1-xxx
-ANTHROPIC_API_KEY=sk-ant-xxx
-DASHSCOPE_API_KEY=xxx
+# LLM Provider (choose one)
+export CLAWCUSTOM__PROVIDERS__OPENROUTER__API_KEY=sk-or-v1-xxx
+export CLAWCUSTOM__PROVIDERS__ANTHROPIC__API_KEY=sk-ant-xxx
 
 # Model Settings
-AI_MODEL=anthropic/claude-opus-4-5
-AI_PROVIDER=auto
-AI_TEMPERATURE=0.1
-AI_MAX_TOKENS=8192
+export CLAWCUSTOM__AGENTS__DEFAULTS__MODEL=anthropic/claude-opus-4-5
+export CLAWCUSTOM__AGENTS__DEFAULTS__TEMPERATURE=0.1
 
-# Optional: Web Search
-BRAVE_SEARCH_API_KEY=xxx
-
-# Optional: Chat Channels
-TELEGRAM_ENABLED=true
-TELEGRAM_BOT_TOKEN=xxx
-DISCORD_ENABLED=false
+# Chat Channels
+export CLAWCUSTOM__CHANNELS__TELEGRAM__ENABLED=true
+export CLAWCUSTOM__CHANNELS__TELEGRAM__TOKEN=xxx
 
 # Resource Limits
-CPU_LIMIT=1
-MEMORY_LIMIT=1G
-RESTRICT_TO_WORKSPACE=true
-```
-
-### Enable Chat Channels
-
-#### Telegram
-
-```json
-{
-  "channels": {
-    "telegram": {
-      "enabled": true,
-      "token": "YOUR_BOT_TOKEN",
-      "allowFrom": ["YOUR_USER_ID"]
-    }
-  }
-}
-```
-
-Get bot token: @BotFather on Telegram → `/newbot`
-
-#### WhatsApp
-
-```bash
-# In container
-docker exec -it <container> nanobot channels login
-
-# Scan QR with WhatsApp → Settings → Linked Devices
-```
-
-#### Discord
-
-1. Create app at https://discord.com/developers
-2. Enable **MESSAGE CONTENT INTENT**
-3. Copy bot token
-4. Add to config
-
----
-
-## 💡 Usage Examples
-
-### Worker Agents
-
-```bash
-# Spawn a coder worker
-nanobot agent -m "Spawn a coder to build a REST API with FastAPI"
-
-# Spawn a researcher
-nanobot agent -m "Spawn a researcher to analyze the AI assistant market"
-
-# Spawn a writer
-nanobot agent -m "Spawn a writer to create API documentation"
-
-# Multi-worker workflow
-nanobot agent -m "
-1. Spawn researcher to study OAuth2 best practices
-2. Spawn architect to design OAuth2 flow
-3. Spawn coder to implement
-4. Spawn reviewer for security audit
-5. Spawn writer for documentation
-"
-```
-
-### Stock Analysis
-
-```bash
-# Get stock info
-nanobot agent -m "What's the current price and P/E ratio of AAPL?"
-
-# Compare stocks
-nanobot agent -m "Compare NVDA, AMD, and INTC performance over the last 3 months"
-
-# Market overview
-nanobot agent -m "Show me today's market overview with major indices"
-
-# Portfolio analysis
-nanobot agent -m "Analyze my portfolio: 50 AAPL, 20 GOOGL, 30 MSFT"
-```
-
-### Document Processing
-
-```bash
-# Extract PDF text
-nanobot agent -m "Extract all text from report.pdf and summarize it"
-
-# Create Word doc
-nanobot agent -m "Create a Word document with meeting notes including a table"
-
-# Merge PDFs
-nanobot agent -m "Merge file1.pdf, file2.pdf, and file3.pdf into combined.pdf"
-```
-
-### Development Sandboxes
-
-```bash
-# Create Node.js environment
-cd ~/projects/my-app
-cp ~/clawcustom/nanobot/skills/fullstack-coding/templates/nodejs.yml docker-compose.yml
-docker-compose up -d
-docker-compose exec app npm init -y
-
-# Create fullstack environment
-mkdir ~/projects/fullstack-app
-cd ~/projects/fullstack-app
-cp ~/clawcustom/nanobot/skills/fullstack-coding/templates/fullstack.yml docker-compose.yml
-docker-compose up -d
-# Now you have frontend, backend, and PostgreSQL running!
+export CLAWCUSTOM__MEMORY_LIMIT=1G
 ```
 
 ---
@@ -414,29 +345,29 @@ docker-compose up -d
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                   ClawCustom                        │
-├─────────────────────────────────────────────────────┤
-│  ┌─────────────────────────────────────────────┐   │
-│  │            Specialized Workers              │   │
-│  │  Coder │ Researcher │ Writer │ Analyst │... │   │
-│  └─────────────────────────────────────────────┘   │
-│                                                     │
-│  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
-│  │  Stock   │  │ Document │  │  Full-Stack      │  │
-│  │ Analysis │  │  Tools   │  │  Sandboxes       │  │
-│  └──────────┘  └──────────┘  └──────────────────┘  │
-│                                                     │
-│  ┌──────────────────────────────────────────────┐  │
-│  │        Multi-Platform Chat Channels          │  │
-│  │ Telegram │ Discord │ WhatsApp │ Slack │...   │  │
-│  └──────────────────────────────────────────────┘  │
-│                                                     │
-│  ┌──────────────────────────────────────────────┐  │
-│  │          LLM Provider Gateway                │  │
-│  │ OpenRouter │ Anthropic │ DashScope │ vLLM   │  │
-│  └──────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────┐
+│                ClawCustom v2.0                 │
+├────────────────────────────────────────────────┤
+│  ┌──────────────────────────────────────────┐ │
+│  │          Plugin System                   │ │
+│  │  Workers │ Docker │ Stock │ Custom...   │ │
+│  └──────────────────────────────────────────┘ │
+│                                                │
+│  ┌──────────────────────────────────────────┐ │
+│  │        Specialized Workers               │ │
+│  │  Coder │ Researcher │ Writer │ Analyst  │ │
+│  └──────────────────────────────────────────┘ │
+│                                                │
+│  ┌──────────────────────────────────────────┐ │
+│  │     Docker Environment Manager           │ │
+│  │  Templates │ Execution │ Lifecycle      │ │
+│  └──────────────────────────────────────────┘ │
+│                                                │
+│  ┌──────────────────────────────────────────┐ │
+│  │      Multi-Platform Chat Channels        │ │
+│  │  Telegram │ Discord │ WhatsApp │ Slack  │ │
+│  └──────────────────────────────────────────┘ │
+└────────────────────────────────────────────────┘
 ```
 
 ---
@@ -445,29 +376,35 @@ docker-compose up -d
 
 ```
 clawcustom/
-├── nanobot/
-│   ├── agent/
-│   │   ├── loop.py           # Core agent loop
-│   │   ├── worker.py         # Worker agent system ⭐
-│   │   ├── subagent.py       # Background tasks
-│   │   └── tools/
-│   │       ├── stock.py      # Stock analysis tools ⭐
-│   │       ├── spawn_worker.py # Worker spawning ⭐
-│   │       └── ...
-│   ├── skills/
-│   │   ├── worker/           # Worker skill ⭐
-│   │   ├── stock-insight/    # Stock research ⭐
-│   │   ├── docx/             # Word documents ⭐
-│   │   ├── pdf/              # PDF processing ⭐
-│   │   └── fullstack-coding/ # Docker sandboxes ⭐
-│   └── ...
+├── clawcustom/
+│   ├── agent/              # Core agent system
+│   │   ├── loop.py         # Agent loop
+│   │   ├── worker.py       # Worker manager
+│   │   └── tools/          # Agent tools
+│   ├── plugins/            # NEW: Plugin system ⭐
+│   │   ├── base.py         # BasePlugin class
+│   │   ├── registry.py     # Plugin registry
+│   │   ├── loader.py       # Dynamic loader
+│   │   ├── workers/        # Worker plugins
+│   │   │   ├── coder/
+│   │   │   ├── researcher/
+│   │   │   └── ...
+│   │   └── docker/         # Docker plugin
+│   │       ├── __init__.py
+│   │       └── templates/
+│   ├── cli/
+│   │   ├── onboarding.py   # NEW: Interactive setup ⭐
+│   │   └── help_system.py  # NEW: Help system ⭐
+│   ├── channels/           # Chat platforms
+│   ├── providers/          # LLM providers
+│   └── skills/             # Skills library
+├── docker-compose.yml
 ├── docker-compose.coolify.yml
-├── COOLIFY_DEPLOY.md
-├── WORKER_AGENTS.md
+├── pyproject.toml
 └── README.md
 ```
 
-⭐ = Custom ClawCustom additions
+⭐ = New in v2.0
 
 ---
 
@@ -483,7 +420,7 @@ clawcustom/
 }
 ```
 
-When enabled, all file operations are restricted to the workspace directory.
+Restricts all file operations to workspace directory.
 
 ### Channel Allowlists
 
@@ -497,66 +434,15 @@ When enabled, all file operations are restricted to the workspace directory.
 }
 ```
 
-Empty `allowFrom` denies all access by default (new behavior).
+Empty `allowFrom` denies all access by default.
 
-### API Key Security
+### Best Practices
 
-- Never commit API keys
-- Use environment variables in production
-- Rotate keys regularly
-- Use separate keys for dev/prod
-
----
-
-## 📊 Monitoring & Logs
-
-### Check Status
-
-```bash
-nanobot status
-```
-
-### View Logs
-
-```bash
-# Docker
-docker compose logs -f nanobot-gateway
-
-# Systemd
-journalctl --user -u nanobot-gateway -f
-
-# Direct
-tail -f ~/.nanobot/logs/*.log
-```
-
-### Health Check
-
-```bash
-docker exec -it <container> nanobot status
-```
-
----
-
-## 🔄 Updates
-
-### Docker
-
-```bash
-docker compose pull
-docker compose up -d
-```
-
-### From Source
-
-```bash
-git pull
-pip install -e .
-nanobot gateway  # Auto-restarts
-```
-
-### Coolify
-
-Click **Redeploy** in Coolify dashboard or enable **Auto Deploy**.
+- ✅ Never commit API keys
+- ✅ Use environment variables in production
+- ✅ Rotate keys regularly
+- ✅ Use separate keys for dev/prod
+- ✅ Enable workspace restriction in production
 
 ---
 
@@ -564,14 +450,13 @@ Click **Redeploy** in Coolify dashboard or enable **Auto Deploy**.
 
 | Command | Description |
 |---------|-------------|
-| `nanobot onboard` | Initialize config & workspace |
-| `nanobot agent -m "..."` | Chat with agent |
-| `nanobot agent` | Interactive mode |
-| `nanobot gateway` | Start gateway server |
-| `nanobot status` | Show system status |
-| `nanobot channels login` | Link WhatsApp |
-| `nanobot channels status` | Channel status |
-| `nanobot provider login` | OAuth login (Codex, Copilot) |
+| `clawcustom onboard` | Interactive setup wizard ⭐ |
+| `clawcustom agent -m "..."` | Chat with agent |
+| `clawcustom agent` | Interactive mode |
+| `clawcustom gateway` | Start gateway server |
+| `clawcustom status` | Show system status |
+| `clawcustom channels login` | Link WhatsApp |
+| `clawcustom provider login` | OAuth login |
 
 ---
 
@@ -584,37 +469,40 @@ Click **Redeploy** in Coolify dashboard or enable **Auto Deploy**.
 docker logs <container-id>
 
 # Common issues:
-# 1. Missing API key - Check env vars
-# 2. Invalid model - Verify AI_MODEL
-# 3. Port conflict - Change GATEWAY_PORT
+# 1. Missing API key → Check env vars
+# 2. Invalid model → Verify AI_MODEL
+# 3. Port conflict → Change port
 ```
 
 ### Workers Not Spawning
 
 ```bash
-# Verify worker skill is loaded
-nanobot agent -m "List available skills"
+# Verify plugins loaded
+clawcustom agent -m "status"
 
-# Check yfinance for stock tools
+# Check dependencies
 pip install yfinance pandas
 ```
 
-### Can't Access Chat Channels
+### Environment Creation Fails
 
-1. Verify tokens in config/env
-2. Check bot permissions
-3. Review logs for auth errors
-4. Ensure `enabled: true` in config
+```bash
+# Check Docker
+docker --version
+docker-compose --version
+
+# Verify Docker running
+docker ps
+```
 
 ### Memory Issues
 
-Increase resource limits in Coolify/docker-compose:
-
+Increase in docker-compose.yml:
 ```yaml
 deploy:
   resources:
     limits:
-      memory: 2G  # Increase from 1G
+      memory: 2G
 ```
 
 ---
@@ -623,23 +511,24 @@ deploy:
 
 | Document | Description |
 |----------|-------------|
-| [COOLIFY_DEPLOY.md](COOLIFY_DEPLOY.md) | Complete Coolify deployment guide |
-| [WORKER_AGENTS.md](WORKER_AGENTS.md) | Worker agent system guide |
-| [WORKER_EXAMPLES.md](WORKER_EXAMPLES.md) | Real-world worker examples |
-| [WORKER_IMPLEMENTATION.md](WORKER_IMPLEMENTATION.md) | Technical implementation details |
+| [COOLIFY_DEPLOY.md](COOLIFY_DEPLOY.md) | Coolify deployment guide |
+| [MODULAR_SYSTEM.md](MODULAR_SYSTEM.md) | v2.0 architecture details |
+| [WORKER_AGENTS.md](WORKER_AGENTS.md) | Worker system guide |
+| [WORKER_EXAMPLES.md](WORKER_EXAMPLES.md) | Usage examples |
+| [RENAME_SUMMARY.md](RENAME_SUMMARY.md) | Migration from nanobot |
 
 ---
 
 ## 🤝 Contributing
 
-Contributions welcome! Areas of interest:
+Contributions welcome! Priority areas:
 
-- [ ] More worker types (QA tester, project manager, etc.)
-- [ ] Additional stock analysis features
-- [ ] More document processing tools
-- [ ] Additional Docker sandbox templates
+- [ ] More worker types (QA tester, project manager)
+- [ ] Additional Docker templates
 - [ ] New chat channel integrations
-- [ ] UI/dashboard for monitoring
+- [ ] Web UI dashboard
+- [ ] Plugin marketplace
+- [ ] Enhanced monitoring
 
 ### Development Setup
 
@@ -663,7 +552,7 @@ ruff check .
 - [ ] Web UI dashboard
 - [ ] Worker collaboration (shared state)
 - [ ] Custom worker templates
-- [ ] Enhanced monitoring
+- [ ] Plugin marketplace
 
 ### Q3 2026
 - [ ] Multi-modal support (images, voice)
@@ -681,7 +570,7 @@ ruff check .
 
 ## 🙏 Acknowledgments
 
-ClawCustom is built on top of [nanobot](https://github.com/HKUDS/nanobot), an ultra-lightweight AI assistant framework. Special thanks to the nanobot team for creating the foundation.
+ClawCustom v2.0 is a complete rewrite inspired by [nanobot](https://github.com/HKUDS/nanobot). Special thanks to the nanobot team for creating the foundation that made this possible.
 
 ---
 
@@ -701,15 +590,24 @@ MIT License - See [LICENSE](LICENSE) file.
 
 ## 📧 Support
 
-For questions or issues:
-
 1. Check documentation above
-2. Search existing issues
-3. Open a new issue on GitHub
-4. Join Discord community
+2. Search [existing issues](https://github.com/jeccleston/clawcustom/issues)
+3. Open a [new issue](https://github.com/jeccleston/clawcustom/issues/new)
+4. Join [Discord community](https://discord.gg/MnCvHqpUGB)
 
 ---
 
-*ClawCustom is for educational, research, and technical exchange purposes only. Not financial advice.*
+*ClawCustom v2.0 is for educational, research, and technical exchange purposes only. Not financial advice.*
 
 **Built with ❤️ by [@jeccleston](https://github.com/jeccleston)**
+
+---
+
+## 🚀 Quick Links
+
+- [Get Started](#-quick-start)
+- [Installation](#-installation)
+- [Usage Examples](#-usage-examples)
+- [Configuration](#️-configuration)
+- [Documentation](#-documentation)
+- [Contributing](#-contributing)
