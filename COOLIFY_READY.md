@@ -48,7 +48,7 @@ Your ClawCustom repository is **fully configured** and ready for deployment on C
 1. + New → + New Service
 2. Public Git Repository
 3. URL: https://github.com/jeccleston/clawcustom
-4. Branch: main
+4. Branch: master
 5. Build Pack: Docker Compose
 6. Compose File: docker-compose.coolify.yml
 7. Save
@@ -128,7 +128,7 @@ clawcustom agent -m "help"
 ## 🎯 Repository Information
 
 **GitHub URL:** https://github.com/jeccleston/clawcustom  
-**Branch:** main  
+**Branch:** master  
 **Latest Version:** 2.0.0  
 **License:** MIT  
 
