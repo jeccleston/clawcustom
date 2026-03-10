@@ -14,27 +14,27 @@ services:
       # - ./config.json:/root/.clawcustom/config.json:ro
     environment:
       # Required: LLM Provider API Key
-      - clawcustom__PROVIDERS__OPENROUTER__API_KEY=${OPENROUTER_API_KEY:-}
-      - clawcustom__PROVIDERS__ANTHROPIC__API_KEY=${ANTHROPIC_API_KEY:-}
-      - clawcustom__PROVIDERS__DASHSCOPE__API_KEY=${DASHSCOPE_API_KEY:-}
+      - CLAWCUSTOM__PROVIDERS__OPENROUTER__API_KEY=${OPENROUTER_API_KEY:-}
+      - CLAWCUSTOM__PROVIDERS__ANTHROPIC__API_KEY=${ANTHROPIC_API_KEY:-}
+      - CLAWCUSTOM__PROVIDERS__DASHSCOPE__API_KEY=${DASHSCOPE_API_KEY:-}
       
       # Optional: Web Search
-      - clawcustom__TOOLS__WEB__SEARCH__API_KEY=${BRAVE_SEARCH_API_KEY:-}
+      - CLAWCUSTOM__TOOLS__WEB__SEARCH__API_KEY=${BRAVE_SEARCH_API_KEY:-}
       
       # Optional: Channel Configs
-      - clawcustom__CHANNELS__TELEGRAM__ENABLED=${TELEGRAM_ENABLED:-false}
-      - clawcustom__CHANNELS__TELEGRAM__TOKEN=${TELEGRAM_BOT_TOKEN:-}
-      - clawcustom__CHANNELS__DISCORD__ENABLED=${DISCORD_ENABLED:-false}
-      - clawcustom__CHANNELS__DISCORD__TOKEN=${DISCORD_BOT_TOKEN:-}
+      - CLAWCUSTOM__CHANNELS__TELEGRAM__ENABLED=${TELEGRAM_ENABLED:-false}
+      - CLAWCUSTOM__CHANNELS__TELEGRAM__TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - CLAWCUSTOM__CHANNELS__DISCORD__ENABLED=${DISCORD_ENABLED:-false}
+      - CLAWCUSTOM__CHANNELS__DISCORD__TOKEN=${DISCORD_BOT_TOKEN:-}
       
       # Agent Defaults
-      - clawcustom__AGENTS__DEFAULTS__MODEL=${AI_MODEL:-anthropic/claude-opus-4-5}
-      - clawcustom__AGENTS__DEFAULTS__PROVIDER=${AI_PROVIDER:-auto}
-      - clawcustom__AGENTS__DEFAULTS__TEMPERATURE=${AI_TEMPERATURE:-0.1}
-      - clawcustom__AGENTS__DEFAULTS__MAX_TOKENS=${AI_MAX_TOKENS:-8192}
+      - CLAWCUSTOM__AGENTS__DEFAULTS__MODEL=${AI_MODEL:-anthropic/claude-opus-4-5}
+      - CLAWCUSTOM__AGENTS__DEFAULTS__PROVIDER=${AI_PROVIDER:-auto}
+      - CLAWCUSTOM__AGENTS__DEFAULTS__TEMPERATURE=${AI_TEMPERATURE:-0.1}
+      - CLAWCUSTOM__AGENTS__DEFAULTS__MAX_TOKENS=${AI_MAX_TOKENS:-8192}
       
       # Security
-      - clawcustom__TOOLS__RESTRICT_TO_WORKSPACE=${RESTRICT_TO_WORKSPACE:-true}
+      - CLAWCUSTOM__TOOLS__RESTRICT_TO_WORKSPACE=${RESTRICT_TO_WORKSPACE:-true}
     ports:
       - "${GATEWAY_PORT:-18790}:18790"
     restart: unless-stopped

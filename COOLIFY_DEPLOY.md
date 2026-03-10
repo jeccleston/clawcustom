@@ -1,6 +1,6 @@
-# Deploy nanobot to Coolify
+# Deploy clawcustom to Coolify
 
-Complete guide for deploying nanobot (clawwork) on Coolify - a self-hosted Vercel/Netlify alternative.
+Complete guide for deploying clawcustom (clawwork) on Coolify - a self-hosted Vercel/Netlify alternative.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ Complete guide for deploying nanobot (clawwork) on Coolify - a self-hosted Verce
 
 1. Open your Coolify dashboard
 2. Click **"+ New"** → **"+ New Project"**
-3. Name it `nanobot` (or `clawwork`)
+3. Name it `clawcustom` (or `clawwork`)
 4. Click **Create**
 
 ### 2. Add New Service
@@ -31,7 +31,7 @@ Complete guide for deploying nanobot (clawwork) on Coolify - a self-hosted Verce
 #### Option B: Dockerfile
 
 1. Select **"Public Git repository"**
-2. Enter repository URL: `https://github.com/HKUDS/nanobot.git`
+2. Enter repository URL: `https://github.com/HKUDS/clawcustom.git`
 3. Branch: `main`
 4. Build Pack: **Dockerfile**
 5. Dockerfile path: `Dockerfile`
@@ -71,10 +71,10 @@ MEMORY_LIMIT=1G
 
 ### 4. Configure Domain (Optional)
 
-If you want to access nanobot via a custom domain:
+If you want to access clawcustom via a custom domain:
 
 1. Go to **Domain** tab
-2. Add your domain: `nanobot.yourdomain.com`
+2. Add your domain: `clawcustom.yourdomain.com`
 3. Coolify will auto-configure reverse proxy and SSL
 
 ### 5. Deploy
@@ -89,7 +89,7 @@ If you want to access nanobot via a custom domain:
 
 ```bash
 # Check container status
-docker ps | grep nanobot
+docker ps | grep clawcustom
 
 # View logs
 docker logs -f <container-id>
@@ -99,20 +99,20 @@ docker logs -f <container-id>
 
 ### 2. Initial Configuration
 
-The first time nanobot runs, it will create default config in the persistent volume.
+The first time clawcustom runs, it will create default config in the persistent volume.
 
 **Option 1: Via CLI (if you have server access)**
 ```bash
-docker exec -it <container-id> nanobot onboard
+docker exec -it <container-id> clawcustom onboard
 ```
 
 **Option 2: Edit config directly**
 ```bash
 # Access the volume
-docker volume inspect nanobot-data
+docker volume inspect clawcustom-data
 
 # Edit config.json
-docker exec -it <container-id> nano /root/.nanobot/config.json
+docker exec -it <container-id> nano /root/.clawcustom/config.json
 ```
 
 ### 3. Enable Chat Channels
@@ -146,7 +146,7 @@ WhatsApp requires QR code scanning:
 
 ```bash
 # Execute in container
-docker exec -it <container-id> nanobot channels login
+docker exec -it <container-id> clawcustom channels login
 
 # Scan QR code with WhatsApp
 # Settings → Linked Devices → Link a Device
@@ -156,7 +156,7 @@ docker exec -it <container-id> nanobot channels login
 
 **Via Coolify Terminal:**
 ```bash
-docker exec -it <container-id> nanobot agent -m "Hello! What can you do?"
+docker exec -it <container-id> clawcustom agent -m "Hello! What can you do?"
 ```
 
 **Via Chat Channel:**
@@ -186,13 +186,13 @@ MEMORY_RESERVATION: 256M
 
 ### Persistent Storage
 
-Coolify automatically creates the `nanobot-data` volume. This persists:
+Coolify automatically creates the `clawcustom-data` volume. This persists:
 
-- `~/.nanobot/config.json` - Your configuration
-- `~/.nanobot/workspace/` - Agent workspace
-- `~/.nanobot/workspace/MEMORY.md` - Long-term memory
-- `~/.nanobot/workspace/HEARTBEAT.md` - Periodic tasks
-- `~/.nanobot/sessions/` - Chat sessions
+- `~/.clawcustom/config.json` - Your configuration
+- `~/.clawcustom/workspace/` - Agent workspace
+- `~/.clawcustom/workspace/MEMORY.md` - Long-term memory
+- `~/.clawcustom/workspace/HEARTBEAT.md` - Periodic tasks
+- `~/.clawcustom/sessions/` - Chat sessions
 
 ### Auto-Restart Policy
 
@@ -202,11 +202,11 @@ Set in Coolify service settings:
 
 ### Multiple Instances
 
-Deploy multiple nanobot instances for different purposes:
+Deploy multiple clawcustom instances for different purposes:
 
 1. Create separate services in Coolify
 2. Use different ports: `18791`, `18792`, etc.
-3. Use separate volumes: `nanobot-bot1-data`, `nanobot-bot2-data`
+3. Use separate volumes: `clawcustom-bot1-data`, `clawcustom-bot2-data`
 4. Configure different channels/models per instance
 
 ## Troubleshooting
@@ -243,12 +243,12 @@ If container is killed for OOM:
 Ensure volume is properly mounted:
 
 ```bash
-docker volume inspect nanobot-data
+docker volume inspect clawcustom-data
 ```
 
 If volume is missing, recreate:
 ```bash
-docker volume create nanobot-data
+docker volume create clawcustom-data
 ```
 
 ## Advanced Configuration
@@ -259,7 +259,7 @@ docker volume create nanobot-data
 2. Mount it in Coolify:
    ```yaml
    volumes:
-     - ./config.json:/root/.nanobot/config.json:ro
+     - ./config.json:/root/.clawcustom/config.json:ro
    ```
 3. Or use Coolify's "File Mounts" feature
 
@@ -317,7 +317,7 @@ AI_PROVIDER=auto
 
 4. **Use HTTPS for all webhooks**
 
-5. **Keep Coolify and nanobot updated**
+5. **Keep Coolify and clawcustom updated**
 
 ## Monitoring
 
@@ -333,7 +333,7 @@ Add to docker-compose:
 
 ```yaml
 healthcheck:
-  test: ["CMD", "nanobot", "status"]
+  test: ["CMD", "clawcustom", "status"]
   interval: 60s
   timeout: 10s
   retries: 3
@@ -341,7 +341,7 @@ healthcheck:
 
 ## Updates and Maintenance
 
-### Update nanobot
+### Update clawcustom
 
 **Docker Compose:**
 ```bash
@@ -357,17 +357,17 @@ docker-compose up -d
 
 ```bash
 # Backup config and data
-docker run --rm -v nanobot-data:/data -v $(pwd):/backup alpine tar czf /backup/nanobot-backup.tar.gz /data
+docker run --rm -v clawcustom-data:/data -v $(pwd):/backup alpine tar czf /backup/clawcustom-backup.tar.gz /data
 
 # Restore
-docker run --rm -v nanobot-data:/data -v $(pwd):/backup alpine tar xzf /backup/nanobot-backup.tar.gz -C /data
+docker run --rm -v clawcustom-data:/data -v $(pwd):/backup alpine tar xzf /backup/clawcustom-backup.tar.gz -C /data
 ```
 
 ## Support
 
-- **Documentation**: https://github.com/HKUDS/nanobot
+- **Documentation**: https://github.com/HKUDS/clawcustom
 - **Discord**: https://discord.gg/MnCvHqpUGB
-- **Issues**: https://github.com/HKUDS/nanobot/issues
+- **Issues**: https://github.com/HKUDS/clawcustom/issues
 
 ## Cost Estimation
 

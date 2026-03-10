@@ -1,9 +1,9 @@
 {
-  "name": "nanobot",
-  "description": "Ultra-lightweight personal AI assistant - 4000 lines of code, 99% smaller than alternatives",
-  "version": "0.1.4",
+  "name": "ClawCustom",
+  "description": "Modular AI assistant platform with specialized worker agents and Docker development environments",
+  "version": "2.0.0",
   "repository": {
-    "url": "https://github.com/HKUDS/nanobot",
+    "url": "https://github.com/jeccleston/clawcustom",
     "branch": "main"
   },
   "build": {
@@ -16,8 +16,8 @@
     "file": "docker-compose.coolify.yml",
     "volumes": [
       {
-        "name": "nanobot-data",
-        "mountPath": "/root/.nanobot",
+        "name": "clawcustom-data",
+        "mountPath": "/root/.clawcustom",
         "persistent": true
       }
     ],
@@ -32,18 +32,18 @@
       "required": [
         {
           "name": "OPENROUTER_API_KEY",
-          "description": "OpenRouter API key (or use ANTHROPIC_API_KEY)",
+          "description": "OpenRouter API key (recommended - access to all models)",
           "default": "",
           "secret": true
-        }
-      ],
-      "optional": [
+        },
         {
           "name": "ANTHROPIC_API_KEY",
           "description": "Anthropic API key for Claude models",
           "default": "",
           "secret": true
-        },
+        }
+      ],
+      "optional": [
         {
           "name": "DASHSCOPE_API_KEY",
           "description": "Alibaba DashScope API key for Qwen models",
@@ -52,7 +52,7 @@
         },
         {
           "name": "AI_MODEL",
-          "description": "LLM model to use",
+          "description": "LLM model to use (e.g., anthropic/claude-opus-4-5)",
           "default": "anthropic/claude-opus-4-5"
         },
         {
@@ -62,8 +62,13 @@
         },
         {
           "name": "AI_TEMPERATURE",
-          "description": "Model temperature (0.0-1.0)",
+          "description": "Model temperature (0.0-1.0, lower = more focused)",
           "default": "0.1"
+        },
+        {
+          "name": "AI_MAX_TOKENS",
+          "description": "Max tokens for responses",
+          "default": "8192"
         },
         {
           "name": "BRAVE_SEARCH_API_KEY",
@@ -78,7 +83,7 @@
         },
         {
           "name": "TELEGRAM_BOT_TOKEN",
-          "description": "Telegram bot token",
+          "description": "Telegram bot token from @BotFather",
           "default": "",
           "secret": true
         },
@@ -94,19 +99,24 @@
           "secret": true
         },
         {
+          "name": "WHATSAPP_ENABLED",
+          "description": "Enable WhatsApp (requires QR scan after deploy)",
+          "default": "false"
+        },
+        {
+          "name": "RESTRICT_TO_WORKSPACE",
+          "description": "Restrict file access to workspace only (security)",
+          "default": "true"
+        },
+        {
           "name": "CPU_LIMIT",
-          "description": "CPU limit",
+          "description": "CPU cores limit",
           "default": "1"
         },
         {
           "name": "MEMORY_LIMIT",
-          "description": "Memory limit",
+          "description": "Memory limit (e.g., 1G, 2G)",
           "default": "1G"
-        },
-        {
-          "name": "RESTRICT_TO_WORKSPACE",
-          "description": "Restrict file access to workspace only",
-          "default": "true"
         }
       ]
     },
@@ -121,7 +131,7 @@
       }
     },
     "healthCheck": {
-      "command": "nanobot status",
+      "command": "clawcustom status",
       "interval": 60,
       "timeout": 10,
       "retries": 3,
@@ -130,32 +140,63 @@
     "restartPolicy": "unless-stopped"
   },
   "features": [
-    "Ultra-lightweight: ~4000 lines of code",
-    "Multi-platform chat: Telegram, Discord, WhatsApp, WeChat, Slack, Email",
-    "Multiple LLM providers: OpenRouter, Anthropic, DashScope, DeepSeek, Groq",
-    "Built-in tools: Web search, code execution, file operations",
-    "MCP support: Model Context Protocol integration",
-    "Persistent memory: Long-term conversation memory",
-    "Scheduled tasks: Cron-based automation",
-    "Skills system: Extensible via SKILL.md files"
+    "🤖 7 Specialized Worker Agents (Coder, Researcher, Writer, Analyst, Reviewer, Architect, DevOps)",
+    "🐳 Docker Development Environments (8 pre-built templates)",
+    "📈 Stock Market Analysis & Portfolio Tracking",
+    "📄 Document Processing (Word, PDF)",
+    "💬 Multi-Platform Chat (Telegram, Discord, WhatsApp, Slack, etc.)",
+    "🔌 15+ LLM Providers Supported",
+    "🧩 Modular Plugin System",
+    "👤 Interactive Onboarding Wizard",
+    "📚 Context-Aware Help System"
   ],
   "postDeploy": {
     "instructions": [
       "1. Check the Logs tab for startup messages",
-      "2. Configure your LLM API key in environment variables",
-      "3. Test via CLI: docker exec -it <container> nanobot agent -m 'Hello!'",
-      "4. Optional: Enable chat channels (Telegram, Discord, WhatsApp)",
-      "5. For WhatsApp: Run 'nanobot channels login' and scan QR code"
+      "2. Configure your LLM API key in Environment Variables (OPENROUTER_API_KEY or ANTHROPIC_API_KEY)",
+      "3. Set AI_MODEL (recommended: anthropic/claude-opus-4-5)",
+      "4. Wait for health check to pass (~2-3 minutes)",
+      "5. Test via Terminal: docker exec -it <container> clawcustom agent -m 'help'",
+      "6. Optional: Enable chat channels (Telegram, Discord, WhatsApp)",
+      "7. For WhatsApp: Run 'clawcustom channels login' in Terminal and scan QR code"
+    ],
+    "tips": [
+      "Use 'clawcustom onboard' for interactive setup",
+      "Type 'help' in agent chat to see available commands",
+      "Spawn workers: 'use coder to build a REST API'",
+      "Create environments: 'create python environment'",
+      "Get help: 'help workers', 'help environments', 'help commands'"
     ]
   },
   "documentation": {
     "readme": "README.md",
-    "coolifyGuide": "COOLIFY_DEPLOY.md"
+    "coolifyGuide": "COOLIFY_QUICK_START.md",
+    "modularSystem": "MODULAR_SYSTEM.md",
+    "workerAgents": "WORKER_AGENTS.md"
   },
   "author": {
-    "name": "nanobot team",
-    "url": "https://github.com/HKUDS/nanobot"
+    "name": "clawcustom contributors",
+    "url": "https://github.com/jeccleston/clawcustom"
   },
   "license": "MIT",
-  "tags": ["ai", "chatbot", "assistant", "llm", "agent", "telegram", "discord"]
+  "tags": [
+    "ai",
+    "chatbot",
+    "assistant",
+    "llm",
+    "agent",
+    "workers",
+    "docker",
+    "telegram",
+    "discord",
+    "whatsapp",
+    "modular",
+    "fullstack"
+  ],
+  "screenshots": [],
+  "support": {
+    "discord": "https://discord.gg/MnCvHqpUGB",
+    "issues": "https://github.com/jeccleston/clawcustom/issues",
+    "discussions": "https://github.com/jeccleston/clawcustom/discussions"
+  }
 }
