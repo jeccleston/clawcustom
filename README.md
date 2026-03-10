@@ -102,16 +102,20 @@ Connect to your favorite platforms:
 
 ### 🔌 LLM Provider Support
 
-15+ providers supported:
+**Primary Provider: DashScope (Alibaba Cloud Qwen)** ⭐
+
+Optimized for Alibaba Cloud DashScope with excellent Chinese/English bilingual support.
 
 | Provider | Models | Get API Key |
 |----------|--------|-------------|
+| **DashScope ⭐** | Qwen (qwen3.5-plus, qwen-max, etc.) | [dashscope.console.aliyun.com](https://dashscope.console.aliyun.com) |
 | OpenRouter | All models | [openrouter.ai](https://openrouter.ai) |
 | Anthropic | Claude | [console.anthropic.com](https://console.anthropic.com) |
-| DashScope | Qwen | [dashscope.console.aliyun.com](https://dashscope.console.aliyun.com) |
 | DeepSeek | DeepSeek | [platform.deepseek.com](https://platform.deepseek.com) |
 | Groq | Fast inference | [console.groq.com](https://console.groq.com) |
 | vLLM | Self-hosted | Local deployment |
+
+**💡 DashScope Coding Plan:** Use endpoint `https://coding-intl.dashscope.aliyuncs.com/v1` for optimized coding performance.
 
 ---
 

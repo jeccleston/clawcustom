@@ -1,5 +1,5 @@
-# Coolify Deployment for clawcustom
-# Copy this to your Coolify project's docker-compose.yml
+# Coolify Deployment for ClawCustom
+# Optimized for DashScope (Alibaba Cloud) Qwen models
 
 services:
   clawcustom:
@@ -13,10 +13,13 @@ services:
       # Optional: Mount custom config
       # - ./config.json:/root/.clawcustom/config.json:ro
     environment:
-      # Required: LLM Provider API Key
+      # Required: DashScope API Key (Alibaba Cloud)
+      - CLAWCUSTOM__PROVIDERS__DASHSCOPE__API_KEY=${DASHSCOPE_API_KEY:-}
+      - CLAWCUSTOM__PROVIDERS__DASHSCOPE__API_BASE=${DASHSCOPE_API_BASE:-https://coding-intl.dashscope.aliyuncs.com/v1}
+      
+      # Optional: Alternative Providers (if you want to switch)
       - CLAWCUSTOM__PROVIDERS__OPENROUTER__API_KEY=${OPENROUTER_API_KEY:-}
       - CLAWCUSTOM__PROVIDERS__ANTHROPIC__API_KEY=${ANTHROPIC_API_KEY:-}
-      - CLAWCUSTOM__PROVIDERS__DASHSCOPE__API_KEY=${DASHSCOPE_API_KEY:-}
       
       # Optional: Web Search
       - CLAWCUSTOM__TOOLS__WEB__SEARCH__API_KEY=${BRAVE_SEARCH_API_KEY:-}
@@ -27,9 +30,9 @@ services:
       - CLAWCUSTOM__CHANNELS__DISCORD__ENABLED=${DISCORD_ENABLED:-false}
       - CLAWCUSTOM__CHANNELS__DISCORD__TOKEN=${DISCORD_BOT_TOKEN:-}
       
-      # Agent Defaults
-      - CLAWCUSTOM__AGENTS__DEFAULTS__MODEL=${AI_MODEL:-anthropic/claude-opus-4-5}
-      - CLAWCUSTOM__AGENTS__DEFAULTS__PROVIDER=${AI_PROVIDER:-auto}
+      # Agent Defaults (DashScope Qwen)
+      - CLAWCUSTOM__AGENTS__DEFAULTS__MODEL=${AI_MODEL:-qwen3.5-plus}
+      - CLAWCUSTOM__AGENTS__DEFAULTS__PROVIDER=${AI_PROVIDER:-dashscope}
       - CLAWCUSTOM__AGENTS__DEFAULTS__TEMPERATURE=${AI_TEMPERATURE:-0.1}
       - CLAWCUSTOM__AGENTS__DEFAULTS__MAX_TOKENS=${AI_MAX_TOKENS:-8192}
       

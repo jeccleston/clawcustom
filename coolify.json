@@ -1,6 +1,6 @@
 {
   "name": "ClawCustom",
-  "description": "Modular AI assistant platform with specialized worker agents and Docker development environments",
+  "description": "Modular AI assistant platform powered by Alibaba Cloud Qwen (DashScope)",
   "version": "2.0.0",
   "repository": {
     "url": "https://github.com/jeccleston/clawcustom",
@@ -31,34 +31,27 @@
     "environment": {
       "required": [
         {
-          "name": "OPENROUTER_API_KEY",
-          "description": "OpenRouter API key (recommended - access to all models)",
-          "default": "",
-          "secret": true
-        },
-        {
-          "name": "ANTHROPIC_API_KEY",
-          "description": "Anthropic API key for Claude models",
+          "name": "DASHSCOPE_API_KEY",
+          "description": "Alibaba Cloud DashScope API key (get from dashscope.console.aliyun.com)",
           "default": "",
           "secret": true
         }
       ],
       "optional": [
         {
-          "name": "DASHSCOPE_API_KEY",
-          "description": "Alibaba DashScope API key for Qwen models",
-          "default": "",
-          "secret": true
+          "name": "DASHSCOPE_API_BASE",
+          "description": "DashScope API base URL (coding-intl endpoint)",
+          "default": "https://coding-intl.dashscope.aliyuncs.com/v1"
         },
         {
           "name": "AI_MODEL",
-          "description": "LLM model to use (e.g., anthropic/claude-opus-4-5)",
-          "default": "anthropic/claude-opus-4-5"
+          "description": "Qwen model: qwen3.5-plus (recommended), qwen-max, qwen-plus, qwen-turbo",
+          "default": "qwen3.5-plus"
         },
         {
           "name": "AI_PROVIDER",
-          "description": "Provider preference (auto, openrouter, anthropic, dashscope)",
-          "default": "auto"
+          "description": "Provider (dashscope recommended)",
+          "default": "dashscope"
         },
         {
           "name": "AI_TEMPERATURE",
@@ -117,6 +110,18 @@
           "name": "MEMORY_LIMIT",
           "description": "Memory limit (e.g., 1G, 2G)",
           "default": "1G"
+        },
+        {
+          "name": "OPENROUTER_API_KEY",
+          "description": "OpenRouter API key (alternative provider)",
+          "default": "",
+          "secret": true
+        },
+        {
+          "name": "ANTHROPIC_API_KEY",
+          "description": "Anthropic API key (alternative provider)",
+          "default": "",
+          "secret": true
         }
       ]
     },
@@ -140,37 +145,42 @@
     "restartPolicy": "unless-stopped"
   },
   "features": [
-    "🤖 7 Specialized Worker Agents (Coder, Researcher, Writer, Analyst, Reviewer, Architect, DevOps)",
+    "🤖 Powered by Alibaba Cloud Qwen (DashScope)",
+    "🚀 Optimized for DashScope Coding Plan endpoint",
+    "🧩 7 Specialized Worker Agents (Coder, Researcher, Writer, Analyst, Reviewer, Architect, DevOps)",
     "🐳 Docker Development Environments (8 pre-built templates)",
     "📈 Stock Market Analysis & Portfolio Tracking",
     "📄 Document Processing (Word, PDF)",
     "💬 Multi-Platform Chat (Telegram, Discord, WhatsApp, Slack, etc.)",
-    "🔌 15+ LLM Providers Supported",
+    "🔌 15+ LLM Providers Supported (DashScope, OpenRouter, Anthropic, etc.)",
     "🧩 Modular Plugin System",
     "👤 Interactive Onboarding Wizard",
     "📚 Context-Aware Help System"
   ],
   "postDeploy": {
     "instructions": [
-      "1. Check the Logs tab for startup messages",
-      "2. Configure your LLM API key in Environment Variables (OPENROUTER_API_KEY or ANTHROPIC_API_KEY)",
-      "3. Set AI_MODEL (recommended: anthropic/claude-opus-4-5)",
-      "4. Wait for health check to pass (~2-3 minutes)",
-      "5. Test via Terminal: docker exec -it <container> clawcustom agent -m 'help'",
-      "6. Optional: Enable chat channels (Telegram, Discord, WhatsApp)",
-      "7. For WhatsApp: Run 'clawcustom channels login' in Terminal and scan QR code"
+      "1. Get DashScope API key from https://dashscope.console.aliyun.com",
+      "2. Configure DASHSCOPE_API_KEY in Environment Variables",
+      "3. Set DASHSCOPE_API_BASE to: https://coding-intl.dashscope.aliyuncs.com/v1",
+      "4. Model is pre-configured: qwen3.5-plus (balanced performance/cost)",
+      "5. Wait for health check to pass (~2-3 minutes)",
+      "6. Test via Terminal: docker exec -it <container> clawcustom agent -m 'help'",
+      "7. Optional: Enable chat channels (Telegram, Discord, WhatsApp)",
+      "8. For WhatsApp: Run 'clawcustom channels login' in Terminal and scan QR code"
     ],
     "tips": [
       "Use 'clawcustom onboard' for interactive setup",
       "Type 'help' in agent chat to see available commands",
       "Spawn workers: 'use coder to build a REST API'",
       "Create environments: 'create python environment'",
-      "Get help: 'help workers', 'help environments', 'help commands'"
+      "Get help: 'help workers', 'help environments', 'help commands'",
+      "DashScope provides excellent Chinese language support"
     ]
   },
   "documentation": {
     "readme": "README.md",
     "coolifyGuide": "COOLIFY_QUICK_START.md",
+    "dashscopeSetup": "DASHSCOPE_SETUP.md",
     "modularSystem": "MODULAR_SYSTEM.md",
     "workerAgents": "WORKER_AGENTS.md"
   },
@@ -187,6 +197,9 @@
     "agent",
     "workers",
     "docker",
+    "qwen",
+    "dashscope",
+    "alibaba",
     "telegram",
     "discord",
     "whatsapp",
@@ -197,6 +210,7 @@
   "support": {
     "discord": "https://discord.gg/MnCvHqpUGB",
     "issues": "https://github.com/jeccleston/clawcustom/issues",
-    "discussions": "https://github.com/jeccleston/clawcustom/discussions"
+    "discussions": "https://github.com/jeccleston/clawcustom/discussions",
+    "dashscope": "https://help.aliyun.com/zh/dashscope/"
   }
 }
