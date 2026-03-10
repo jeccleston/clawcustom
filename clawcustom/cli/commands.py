@@ -823,7 +823,7 @@ def channels_login():
 @app.command()
 def status():
     """Show clawcustom status."""
-    from .loader import get_config_path, load_config
+    from clawcustom.config.loader import get_config_path, load_config
 
     config_path = get_config_path()
     config = load_config()
