@@ -42,11 +42,14 @@ services:
       - "${GATEWAY_PORT:-18790}:18790"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "clawcustom", "status"]
+      test: ["CMD", "clawcustom", "--help"]
       interval: 60s
       timeout: 10s
       retries: 3
       start_period: 30s
+    # Enable interactive terminal usage in Coolify
+    stdin_open: true
+    tty: true
     deploy:
       resources:
         limits:

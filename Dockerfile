@@ -36,5 +36,6 @@ RUN mkdir -p /root/.clawcustom
 # Gateway default port
 EXPOSE 18790
 
+# Default command - can be overridden in Coolify terminal
 ENTRYPOINT ["clawcustom"]
-CMD ["status"]
+CMD ["--help"]
